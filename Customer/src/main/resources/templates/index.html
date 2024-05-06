@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Customer</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+}
+
+div {
+	text-align: center;
+}
+
+h3 {
+	margin-top: 20px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 80%;
+	margin: 20px auto;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+th {
+	background-color: #f2f2f2;
+	color: #333;
+}
+
+td {
+	text-align: center;
+}
+
+a.button {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+a.button:hover {
+	background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+	<div>
+		<h3>Customer Profile</h3>
+		<br> <a href="new" class="button">Add New Customer</a> <br>
+		<br>
+		<table>
+			<thead>
+				<tr>
+					<th>Customer ID</th>
+					<th>FirstName</th>
+					<th>LastName</th>
+					<th>Address</th>
+					<th>Mobile</th>
+					<th>Email</th>
+					<th>Birthdate</th>
+					<th>Password</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="customer : ${listCustomer}">
+					<td th:text="${customer.id}">Customer ID</td>
+					<td th:text="${customer.firstName}">FirstName</td>
+					<td th:text="${customer.lastName}">LastName</td>
+					<td th:text="${customer.address}">Address</td>
+					<td th:text="${customer.mobile}">Mobile</td>
+					<td th:text="${customer.email}">Email</td>
+					<td th:text="${customer.birthdate}">Birthdate</td>
+					<td th:text="${customer.password}">Password</td>
+
+					<td><a th:href="@{'/edit/' +${customer.id}}" class="button">Edit</a>
+						<a th:href="@{'/delete/' +${customer.id}}" class="button"
+						style="background-color: #dc3545;">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
